@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsSlack</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+    <script type="text/javascript" src="./script.js"></script>
+</head>
+
+<body>
+    <label for="results">Channels</label>
+    <p id="results"></p>
+    <label for="cForm">Create new Channel</label>
+    <form id="cForm">
+        <div>
+            <label for="txt1">Name: </label>
+            <input type="text" name="name" id="txt1">
+        </div>
+        <div>
+            <label for="txt2">Topic: </label>
+            <input type="text" name="topic" id="txt2">
+        </div>
+        <input type="submit" name="smbt" value="Submit" id="sbmt">
+    </form>
+</body>
+
+<!--Creates the popup body-->
+<div class="pop up-overlay">
+    <!--Creates the popup content-->
+    <div class="popup-content">
+        <label for="user">Username: </label><br>
+        <input type="text" name="username" id="user"><br>
+        <input type="submit" name="smbtUser" value="Create" id="smbtUser">    
+    </div>
+</div>
+
+</html>
