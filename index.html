@@ -9,20 +9,32 @@
 </head>
 
 <body>
-    <label for="results">Channels</label>
-    <p id="results"></p>
-    <label for="cForm">Create new Channel</label>
-    <form id="cForm">
-        <div>
-            <label for="txt1">Name: </label>
-            <input type="text" name="name" id="txt1">
+    <div class="left-column">
+        <label for="results">Channels</label>
+        <p id="results"></p>
+        <label for="cForm">Create new Channel</label>
+        <form id="cForm">
+            <div>
+                <label for="txt1">Name: </label>
+                <input type="text" name="name" id="txt1">
+            </div>
+            <div>
+                <label for="txt2">Topic: </label>
+                <input type="text" name="topic" id="txt2">
+            </div>
+            <input type="submit" name="smbt" value="Submit" id="sbmt">
+        </form>
+    </div>
+    <div class="right-column">
+        <div class="message-box">
+            <div class="messages"></div>
+            <form id="messageForm">
+                <input type="submit" name="send" value="Send" id="send">
+            </form>
+            <label for="messageInput">Message: </label>
+            <textarea name="messageInput" form="messageForm" id="messageInput" rows="1" cols="75"></textarea>
         </div>
-        <div>
-            <label for="txt2">Topic: </label>
-            <input type="text" name="topic" id="txt2">
-        </div>
-        <input type="submit" name="smbt" value="Submit" id="sbmt">
-    </form>
+    </div>
 </body>
 
 <!--Creates the popup body-->
