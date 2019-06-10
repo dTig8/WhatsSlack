@@ -64,6 +64,7 @@ function showActiveUsers() {
     $("#showUsers").on("click", async function () {
         if ($(".right-column").css("visibility") == "hidden") {
             showRightColumn();
+            console.log("should be there!!")
             $(".user-list").empty();
             let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ activeChannelId +"/users");
             $.each(data, function (key, value) {
@@ -72,7 +73,6 @@ function showActiveUsers() {
         } else {
             hideRightColumn();
         }
-        console.log("after if");
     });
 }
 
@@ -89,7 +89,7 @@ async function loadMessages() {
     $.each(data._embedded.messageList, function (key, value) {
         $(".messages").prepend(
             $('<div/>', {'class': 'message'}).append(
-                $('<p/>', {'class': 'info', text: value.creator +" "+ value.timestamp})
+                $('<p/>', {'class': 'info', text: "Creator: "+ value.creator +" Created at: "+ value.timestamp})
             ).append(
                 $('<p/>', {'class': 'content', text: value.content})
             ));
@@ -101,7 +101,7 @@ async function loadChannels() {
     let data = await makeGETrequest("http://34.243.3.31:8080/channels");
     $("#channelList").empty();
     $.each(data._embedded.channelList, function (key, value) {
-        $("#channelList").append($("<li>").attr("id", value.id).attr("class", ".").text(value.name));
+        $("#channelList").append($("<li>").attr("id", value.id).attr("class", "channel").attr("align", "center").text(value.name));
     });
 }
 
