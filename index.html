@@ -6,12 +6,14 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
     <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="./config.js"></script>
 </head>
 
 <body>
     <div class="left-column">
-        <label for="results">Channels</label>
-        <p id="results"></p>
+        <label for="channelList">Channels: </label>
+        <ul class="channelList" id="channelList"></ul>
+        <br>
         <label for="cForm">Create new Channel</label>
         <form id="cForm">
             <div>
@@ -28,11 +30,9 @@
     <div class="right-column">
         <div class="message-box">
             <div class="messages"></div>
-            <form id="messageForm">
-                <input type="submit" name="send" value="Send" id="send">
-            </form>
+            <p><button type="button" name="send" id="send">Send</button></p>
             <label for="messageInput">Message: </label>
-            <textarea name="messageInput" form="messageForm" id="messageInput" rows="1" cols="75"></textarea>
+            <textarea name="messageInput" id="messageInput" rows="1" cols="75"></textarea>
         </div>
     </div>
 </body>
