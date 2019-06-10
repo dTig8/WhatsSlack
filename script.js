@@ -1,24 +1,20 @@
 var selectedChannel;
 
 $(document).ready(function () {
-    $("form").submit(function (event) {
-        
-        makePOSTrequest("http://34.243.3.31:8080/channels", $(" form "), formToJsonString);
-
-        event.preventDefault();
-    });
-
+    //wird beim erzeugen eines channels aufgerufen
+    createChannel();
+    //wird beim nach dem klicken auf einen channel aufgerufen
     showCreateUsernamePopup();
-
+    //erstellt einen username fuer den channel
     createUsername();
+
 });
 
-window.onload = async function () {
-    let data = await makeGETrequest("http://34.243.3.31:8080/channels");
-    $("#channelList").empty();
-    $.each(data._embedded.channelList, function (key, value) {
-        $("#channelList").append($("<li>").attr("id", value.id).attr("class", ".").text(value.name));
-    });
+window.onload = function () {
+    //laedt die channels wenn die seite aufgerufen wird
+    loadChannels();
+    //aktualisiert die channels alle 10 sek
+    setInterval(loadChannels, 10000);
 }
 
 function createUsername() {
@@ -32,6 +28,12 @@ function createUsername() {
         hideCreateUsernamePopup();
 
         facilitateMessageBox();
+    });
+}
+
+function createChannel(){
+    $("#cForm").submit(function (event) {
+        makePOSTrequest("http://34.243.3.31:8080/channels", $("form"), formToJsonString);
     });
 }
 
@@ -50,14 +52,24 @@ function sendMessage() {
 }
 
 async function loadMessages() {
+    console.log("messages have been updated!")
     let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ selectedChannel +"/messages");
     $(".messages").empty();
-    console.log("Feuer frei!");
     $.each(data._embedded.messageList, function (key, value) {
         $(".messages").append(JSON.stringify(value.content) + "<br>");
     });
 }
 
+async function loadChannels() {
+    console.log("channels have been updated!")
+    let data = await makeGETrequest("http://34.243.3.31:8080/channels");
+    $("#channelList").empty();
+    $.each(data._embedded.channelList, function (key, value) {
+        $("#channelList").append($("<li>").attr("id", value.id).attr("class", ".").text(value.name));
+    });
+}
+
+//sendet einen get request
 function makeGETrequest(url) {
     return $.ajax({
         url: url,
@@ -69,6 +81,7 @@ function makeGETrequest(url) {
     });
 }
 
+//sendet einen post request
 function makePOSTrequest(url, data, funct) {
     $.ajax({
         url: url,
