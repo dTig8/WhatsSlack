@@ -10,34 +10,41 @@
 </head>
 
 <body>
-    <div class="left-column">
-        <label for="channelList">Channels: </label>
-        <ul class="channelList" id="channelList"></ul>
-        <br>
-        <label for="cForm">Create new Channel</label>
-        <form id="cForm">
-            <div>
-                <label for="txt1">Name: </label>
-                <input type="text" name="name" id="txt1">
-            </div>
-            <div>
-                <label for="txt2">Topic: </label>
-                <input type="text" name="topic" id="txt2">
-            </div>
-            <input type="submit" name="smbt" value="Submit" id="sbmt">
-        </form>
-    </div>
-    <div class="right-column">
-        <div class="info-box">
-            <h2 name="channelName" id="channelName"></h2>
-            <h4 name="channelTopic" id="channelTopic"></h4>
-            <p><button type="button" name="showUsers" id="showUsers">Users</button></p>
+    <div class="column-container">
+        <div class="left-column">
+            <label for="channelList">Channels: </label>
+            <ul class="channelList" id="channelList"></ul>
+            <br>
+            <label for="cForm">Create new Channel</label>
+            <form id="cForm">
+                <div>
+                    <label for="txt1">Name: </label>
+                    <input type="text" name="name" id="txt1">
+                </div>
+                <div>
+                    <label for="txt2">Topic: </label>
+                    <input type="text" name="topic" id="txt2">
+                </div>
+                <input type="submit" name="smbt" value="Submit" id="sbmt">
+            </form>
         </div>
-        <div class="message-box">
-            <div class="messages"></div>
-            <p><button type="button" name="send" id="send">Send</button></p>
-            <label for="messageInput">Message: </label>
-            <textarea name="messageInput" id="messageInput" rows="1" cols="75"></textarea>
+        <div class="middle-column">
+            <div class="info-box">
+                <h2 name="channelName" id="channelName"></h2>
+                <h4 name="channelTopic" id="channelTopic"></h4>
+                <button type="button" name="showUsers" id="showUsers">Users</button>
+            </div>
+            <div class="message-box">
+                <div class="messages"></div>
+                <label for="messageInput">Message: </label>
+                <textarea name="messageInput" id="messageInput" rows="1" cols="75"></textarea>
+                <button type="button" name="send" id="send">Send</button>
+            </div>
+        </div>
+        <div class="right-column">
+            <h3>Currently active users:</h3>
+            <div class="user-list">
+            </div>
         </div>
     </div>
 </body>

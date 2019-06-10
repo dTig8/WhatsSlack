@@ -8,6 +8,7 @@
   height:50%;
   left:25%; 
 }
+
 .popup-overlay.active{
   /*displays pop-up when "active" class is present*/
   visibility:visible;
@@ -24,30 +25,52 @@
   visibility:visible;
 }
 
-.message-box {
-  /*Hides pop-up content when there is no "active" class */
-  visibility:hidden;
-}
-
-.message-box.active {
-  /*Shows pop-up content when "active" class is present */
-  visibility:visible;
+.column-container {
+  display: table;
+  width: 100%;
 }
 
 .left-column {
-    width: 33%;
-    padding: 0 10px 0 0;
-    float: left;
+  display: table-cell;
+  width: 25%;
+  float: left;
+  background-color: aqua;
+}
+
+.middle-column {
+  display: table-cell;
+  width: 60%;
+  visibility:hidden;
+  display: inline-block;
+  background-color: darkolivegreen;
+}
+
+.middle-column.active {
+  visibility:visible;
 }
 
 .right-column {
-    width: 66%;
-    padding: 0 10px 0 0;
-    float: right;
+  display: table-cell;
+  width: 15%;
+  float: right;
+  visibility: hidden;
+  background-color: goldenrod;
+}
+
+.right-column.active {
+  visibility: visible;
 }
 
 .channelList {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+.textarea,
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 0;
 }

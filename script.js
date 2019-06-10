@@ -41,17 +41,37 @@ function createChannel(){
 function facilitateMessageBox() {
     setInterval(loadMessages, 1000);
 
-    showTextField();
+    showMiddleColumn();
 
     showChannelInfo();
 
     sendMessage();
+
+    showActiveUsers();
 }
 
 function sendMessage() {
     $("#send").click(function () {
         makePOSTrequest("http://34.243.3.31:8080/channels/"+ selectedChannelId +"/messages", $("#messageInput"), messageFormToJsonString);
     })
+}
+
+function showActiveUsers() {
+    $("#showUsers").on("click", async function () {
+        console.log("Before if");
+        if ($(".right-column").css("visibility") == "hidden") {
+            console.log("inside if");
+            showRightColumn();
+            $(".user-list").empty();
+            let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ activeChannelId +"/users");
+            $.each(data, function (key, value) {
+                $(".user-list").append($("<p>").text(value));
+            });
+        } else {
+            hideRightColumn();
+        }
+        console.log("after if");
+    });
 }
 
 async function showChannelInfo() {
@@ -115,8 +135,16 @@ function showCreateUsernamePopup() {
     });
 }
 
-function showTextField() {
-    $(".message-box").addClass("active");
+function showMiddleColumn() {
+    $(".middle-column").addClass("active");
+}
+
+function showRightColumn() {
+    $(".right-column").addClass("active");
+}
+
+function hideRightColumn() {
+    $(".right-column").removeClass("active");
 }
 
 function userCreateToJsonString(username) {
