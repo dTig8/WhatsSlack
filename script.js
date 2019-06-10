@@ -1,4 +1,5 @@
-var selectedChannel;
+var selectedChannelId;
+var activeChannelId;
 
 $(document).ready(function () {
     //wird beim erzeugen eines channels aufgerufen
@@ -23,7 +24,7 @@ function createUsername() {
         if (username == "") {
             alert("Please enter a username!");
         }
-        makePOSTrequest("http://34.243.3.31:8080/channels/"+ selectedChannel +"/messages", username, userCreateToJsonString);
+        makePOSTrequest("http://34.243.3.31:8080/channels/"+ selectedChannelId +"/messages", username, userCreateToJsonString);
         
         hideCreateUsernamePopup();
 
@@ -42,21 +43,29 @@ function facilitateMessageBox() {
 
     showTextField();
 
+    showChannelInfo();
+
     sendMessage();
 }
 
 function sendMessage() {
     $("#send").click(function () {
-        makePOSTrequest("http://34.243.3.31:8080/channels/"+ selectedChannel +"/messages", $("#messageInput"), messageFormToJsonString);
+        makePOSTrequest("http://34.243.3.31:8080/channels/"+ selectedChannelId +"/messages", $("#messageInput"), messageFormToJsonString);
     })
+}
+
+async function showChannelInfo() {
+    let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ activeChannelId);
+    $("#channelName").text(data.name);
+    $("#channelTopic").text(data.topic);
 }
 
 async function loadMessages() {
     console.log("messages have been updated!")
-    let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ selectedChannel +"/messages");
+    let data = await makeGETrequest("http://34.243.3.31:8080/channels/"+ selectedChannelId +"/messages");
     $(".messages").empty();
     $.each(data._embedded.messageList, function (key, value) {
-        $(".messages").append(JSON.stringify(value.content) + "<br>");
+        $(".messages").append(value.content + "<br>");
     });
 }
 
@@ -96,11 +105,12 @@ function makePOSTrequest(url, data, funct) {
 
 function hideCreateUsernamePopup() {
     $(".popup-overlay, .popup-content").removeClass("active");
+    activeChannelId = selectedChannelId;
 }
 
 function showCreateUsernamePopup() {
     $(".channelList").on("click", "li", function () {
-        selectedChannel = $(this).attr("id");
+        selectedChannelId = $(this).attr("id");
         $(".popup-overlay, .popup-content").addClass("active");
     });
 }
@@ -118,6 +128,5 @@ function formToJsonString(form) {
 }
 
 function messageFormToJsonString(textarea) {
-    console.log(textarea.val());
     return JSON.stringify({ "creator": "test4", "content": textarea.val() });
 }
