@@ -6,23 +6,48 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
     <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="./config.js"></script>
 </head>
 
 <body>
-    <label for="results">Channels</label>
-    <p id="results"></p>
-    <label for="cForm">Create new Channel</label>
-    <form id="cForm">
-        <div>
-            <label for="txt1">Name: </label>
-            <input type="text" name="name" id="txt1">
+    <div class="column-container">
+        <h1 align="center">What's Slack</h1>
+        <div class="left-column">
+            <label for="channelList"><b>Channels:</b></label>
+            <ul class="channelList" id="channelList"></ul>
+            <br>
+            <label for="cForm"><b>Create new Channel:</b></label>
+            <form id="cForm">
+                <div>
+                    <label for="txt1">Name: </label>
+                    <input type="text" name="name" id="txt1">
+                </div>
+                <div>
+                    <label for="txt2">Topic: </label>
+                    <input type="text" name="topic" id="txt2">
+                </div>
+                <input type="submit" name="smbt" value="Submit" id="sbmt">
+            </form>
         </div>
-        <div>
-            <label for="txt2">Topic: </label>
-            <input type="text" name="topic" id="txt2">
+        <div class="middle-column">
+            <div class="info-box">
+                <h2 name="channelName" id="channelName"></h2>
+                <h4 name="channelTopic" id="channelTopic"></h4>
+                <button type="button" name="showUsers" id="showUsers">Users</button>
+            </div>
+            <div class="message-box">
+                <div class="messages"></div>
+                <label for="messageInput">Message: </label>
+                <textarea name="messageInput" id="messageInput" rows="1" cols="75"></textarea>
+                <button type="button" name="send" id="send">Send</button>
+            </div>
         </div>
-        <input type="submit" name="smbt" value="Submit" id="sbmt">
-    </form>
+        <div class="right-column">
+            <h3>Currently active users:</h3>
+            <div class="user-list">
+            </div>
+        </div>
+    </div>
 </body>
 
 <!--Creates the popup body-->

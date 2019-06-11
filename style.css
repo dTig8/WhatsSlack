@@ -1,25 +1,100 @@
 .popup-overlay{
-    /*Hides pop-up when there is no "active" class*/
-    visibility:hidden;
-    position:absolute;
-    background:#ffffff;
-    border:3px solid #666666;
-    width:50%;
-    height:50%;
-    left:25%; 
-  }
-  .popup-overlay.active{
-    /*displays pop-up when "active" class is present*/
-    visibility:visible;
-    text-align:center;
-  }
+  /*Hides pop-up when there is no "active" class*/
+  visibility:hidden;
+  position:absolute;
+  background:#ffffff;
+  border:3px solid #666666;
+  width:50%;
+  height:50%;
+  left:25%; 
+}
+
+.popup-overlay.active{
+  /*displays pop-up when "active" class is present*/
+  visibility:visible;
+  text-align:center;
+}
   
-  .popup-content {
-    /*Hides pop-up content when there is no "active" class */
-   visibility:hidden;
-  }
-  
-  .popup-content.active {
-    /*Shows pop-up content when "active" class is present */
-    visibility:visible;
-  }
+.popup-content {
+  /*Hides pop-up content when there is no "active" class */
+  visibility:hidden;
+}
+
+.popup-content.active {
+  /*Shows pop-up content when "active" class is present */
+  visibility:visible;
+}
+
+.column-container {
+  display: table;
+  width: 100%;
+  background-color: #ffddcc;
+}
+
+.left-column {
+  display: table-cell;
+  width: 20%;
+  float: left;
+  background-color: #ffddcc;
+  border-right: 1px solid black;
+  padding: 10px 15px;
+}
+
+.middle-column {
+  display: table-cell;
+  width: 60%;
+  visibility:hidden;
+  display: inline-block;
+  background-color: #ffddcc;
+  padding: 0 10px 0 10px
+}
+
+.middle-column.active {
+  visibility:visible;
+}
+
+.right-column {
+  display: table-cell;
+  width: 20%;
+  float: right;
+  visibility: hidden;
+  background-color: #ffddcc;
+}
+
+.right-column.active {
+  visibility: visible;
+}
+
+.channelList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.channel {
+  margin: 0 0 5px 0;
+  border:1px solid black;
+  background-color: #ffaa80;
+}
+
+.textarea,
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.message {
+  border:1px solid black;
+  padding: 0 0 0 10px;
+  background-color: #ffaa80;
+}
+
+.info {
+  font-size: small;
+}
+
+* {
+  font-family: Helvetica, Arial, Sans-Serif;
+}
